@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        {% for category, articles in get_articles().items() %}
+            <div class="article-collection">
+                <h3 class="article-collection-title">{{ category }}</h3>
+                {% for article in articles %}
+                <div class="article-link-container">
+                    <a class="article-link" href="{{ article['url'] }}">
+                        {{ article["title"] }}
+                    </a>
+                    <time class="article-date">{{ article["date"] }}</time>
+                </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
